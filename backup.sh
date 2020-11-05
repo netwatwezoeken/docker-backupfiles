@@ -1,7 +1,7 @@
 #!/bin/bash
 backupname=$BACKUP_NAME-$(date +%Y%m%d-%H%M%S)
 
-if ! tar -zcvf $backupname.tgz /data/*; then
+if ! tar -zcvf $backupname.tgz /data/.; then
 	echo "Could not create backup archive" 1>&2
 	exit 1
 fi
