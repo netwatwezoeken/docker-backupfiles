@@ -3,7 +3,7 @@ def withPod(body) {
       containerTemplate(name: 'kaniko', image: 'gcr.io/kaniko-project/executor:debug', command: '/busybox/cat', ttyEnabled: true)
     ],
     volumes: [
-	  secretVolume(secretName: 'dockerhubjoshendriks', mountPath: '/cred')
+	  secretVolume(secretName: 'netwatwezoeken', mountPath: '/cred')
     ]
  ) { body() }
 }
@@ -12,7 +12,7 @@ def withPod(body) {
 withPod {
 	node(POD_LABEL) {
 		def tag = "${env.BRANCH_NAME.replaceAll('/', '-')}-${env.BUILD_NUMBER}"
-		def registry = "nwwz"
+		def registry = "packages.netwatwezoeken.nl/nwwz"
 		def appname = "backupfiles"
 		def service = "${registry}/${appname}:${tag}"
 		checkout scm		
